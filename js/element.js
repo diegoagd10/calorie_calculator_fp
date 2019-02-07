@@ -59,65 +59,16 @@ const addClassByTagName = (name, className) => addClass(name, className)(element
 
 const removeClassByTagName = (name, className) => removeClass(name, className)(elementByTagName)
 
-const elemAppendChildByTagName = (name, child) => elemAppendChildBy(name, child)(elementByTagName)
+const elemAppendChildByTagName = (name, child) => elemAppendChild(name, child)(elementByTagName)
 
 // Selectors
-const elementById = id =>
-    document.getElementById(id)
+const elementById = id => document.getElementById(id)
 
-const elementByTagName = tagName =>
-    document.getElementsByTagName(tagName)
+const elementByTagName = tagName => document.querySelector(tagName)
 
 // Setters
-const setText = (elem, text) => 
-    elem.innerText = text
+const setText = (elem, text) => elem.innerText = text
 
-const setValue = (elem, value) => 
-    elem.value = value
+const setValue = (elem, value) => elem.value = value
 
-const setHTML = (elem, html) => 
-    elem.innerHTML = html
-
-/*
-const value = name =>
-    element(name).value
-
-const setValue = (name, newValue) =>
-    element(name).value = newValue
-
-const setText = (name, newValue) =>
-    element(name).innerText = newValue
-
-const clearText = name =>
-    setText(name, '')
-
-const clearValue = name =>
-    setValue(name, '')
-
-const valueAsInt = name =>
-    parseInt(value(name))
-
-const isValid = name =>
-    value(name)
-
-const areValid = inputs =>
-    inputs.every(isValid)
-
-const addEvent = (name, event, func) =>
-    element(name).addEventListener(event, func)
-
-const addEvents = (inputs, event, func) =>
-    inputs.forEach(name => addEvent(name, event, func))
-
-const addClass = (name, cclass) =>
-    element(name).classList.add(cclass)
-
-const addClasses = (inputs, cclass) =>
-    inputs.forEach(name => addClass(name, cclass))
-
-const removeClass = (name, cclass) =>
-    element(name).classList.remove(cclass)
-
-const removeClasses = (inputs, cclass) =>
-    inputs.forEach(name => removeClasses(name, cclass))
-    */
+const setHTML = (elem, html) => elem.innerHTML = html

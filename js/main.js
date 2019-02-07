@@ -16,7 +16,7 @@ const select = (items, name) => items.map(item => item[name])
 
 const sumAll = (items, name) => select(items, name).reduce(sum, 0)
 
-const clearInputs = () => inputs.forEach(elemClearTextById)
+const clearInputs = () => inputs.forEach(elemClearInputValueById)
 
 const addInvalidClassIfEmpty = inputs => inputs.forEach(name => {
   isValid(name) ? '' : addClassById(name, IS_INVALID)
@@ -60,18 +60,33 @@ const updateTotals = () => {
 const renderItems = () => {
   elemClearValueByTagName('tbody')(setHTML)
 
-  list.map(item => {
+  list.map((item, index) => {
     const row = document.createElement('tr')
+
+    const removeBtn = tag({
+      tag: 'button',
+      attrs: {
+        class: 'btn btn-outline-danger',
+        onclick: `removeItem(${index})`
+      }
+    })(trashIcon)
 
     row.innerHTML = tableRow([
       item.description,
       item.calories,
       item.carbs,
-      item.protein
+      item.protein,
+      removeBtn
     ])
 
     elemAppendChildByTagName('tbody', row)
   })
+}
+
+const removeItem = index => {
+  list.splice(index, 1)
+  updateTotals()
+  renderItems()
 }
 
 removeInvalidClassOnKeyDown(inputs)
